@@ -1,0 +1,207 @@
+
+        @media(min-width:800px){
+            span{
+                width: 100%;
+            }
+        }
+
+        .outer{
+            text-align: center; 
+            background-color: #f7f7f7; 
+            float: none; 
+            height: 100%;
+
+        }
+        .fixed_top{
+            position: fixed; 
+            top:0px;
+            z-index: 10;
+            background-color: white;
+            margin-top: 0px;
+            padding:25px;
+        }
+        .newsjelly_logo{
+            display: inline;
+            width:174px; height:34.5px;
+            float: left
+        }
+        .blood_truth{
+            border:solid 1px black;
+            margin-right: 50px;
+            float:right
+        }
+        .blood_truth_inner{
+            margin-top: 8px;
+            margin-bottom: 7px;
+            margin-left:19px;
+            margin-right:19px
+        }
+        .blood_truth_inner > span{
+            font-size: 13px;
+            vertical-align: text-top;
+             margin-left: 3px;
+        }
+        .div_page{
+            position: relative;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .div_page .title{
+            width: 100%;
+            position:absolute;
+            top:0px;
+            margin-top: 77.6px;
+        }
+        
+        .title h1{
+            margin-top: 0px;
+            font-size: 28px;
+            margin-bottom: 0px;
+        }
+        .title hr{
+            width: 30%;
+            margin-top: 2px;
+        }
+        .title .title_explain{
+            margin-top: 13px;
+        }
+        .title .title_explain p{
+            font-size: 14px;
+            margin:0px;
+            padding:0px;
+            display: block;
+            margin-bottom: 0px;
+        }
+        .title .blood_month_mark{
+            width: 379px;
+            margin-top: 77.5px;
+        }
+        .title .copyright{
+            display: block;
+            margin-top: 54.7px;
+            color:lightgray;
+        }
+        .fill_blood_mark{
+            margin-bottom: 17px;
+            display: block; 
+            margin-left: auto;
+            margin-right: auto
+        }
+        .title_text{
+            color:black;
+            font-size:26px ;
+            margin:0px;
+        }
+        .title_explain{
+            margin: 0px;
+            margin-top:60px;
+        }
+        .title_explain p{
+            font-size: 14px;
+            margin: 0px;
+        }
+        .highcharts-figure{
+            margin: 0px;
+            margin-top: 65px;
+        } 
+        .highcharts-figure > div{
+            width:800px; 
+            height: 400px; 
+            margin-left: auto; 
+            margin-right: auto;  
+        }
+        .chart_explain1{
+            width: fit-content;
+            margin-top: 39px;
+            background-color: white;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            top:0px;
+            border-width: 0px 0px 0px 5px;
+            border-style: solid;
+            border-color: #FA7391
+
+        }
+        .chart_explain1 p{
+            padding-left:20px ;
+            text-align: left;
+            color: #4B4B4B;
+            margin-top: 17px;
+            font-size: 14px;
+            margin: 7px;
+        }
+        .box2{
+            background-color: white; 
+            margin-left:auto; 
+            margin-right:auto
+        }
+        .box2 > div{
+            text-align: center;
+            width: 900px; 
+            margin:0 auto;
+        }
+
+        .title_explain p{
+            margin: 7px;
+        }
+    @font-face {
+        src: url("./font/Roboto-Medium.ttf");
+        font-family: 'Roboto';
+    }
+     
+
+    pre{
+        font-family: 'Roboto';
+        font-size:14px
+    }
+
+    .hr-sect {
+        display: flex;
+        flex-basis: 100%;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.35);
+        font-size: 12px;
+        margin: 8px;
+      }
+      .hr-sect::before,
+      .hr-sect::after {
+        content: "";
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.35);
+        height: 1px;
+        font-size: 0px;
+        line-height: 0px;
+        margin: 0px 16px;
+      }
+      .navigation{
+        z-index: 100;
+        position:fixed;
+        top:100px; 
+        right:0px
+      }
+      .circle{
+        border-radius: 50%;
+      }
+      .navigation > div > div{
+        margin: 14px 0px
+      }
+
+      .navi_guide{
+        position:absolute; 
+        z-index: -1; 
+        top:-9px; 
+        height: 95%; 
+        left:4.11px; 
+        border-left: gray dashed 1px;
+      }
+      .box_2{
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 5px 15px #0000000D;
+        border-radius: 9px;
+        width: 900px;
+        margin-left: auto; 
+        margin-right: auto; 
+        margin-top: 50px;
+      }

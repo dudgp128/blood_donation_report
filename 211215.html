@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css_style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script>
+        var broswer_width = 0;
+        var resize_flag = 0;
+        window.onresize = function (event) {
+            broswer_width = window.innerWidth
+
+            if (resize_flag != 1 && broswer_width < 550) {
+                resize_flag = 1
+                $(".blood_report").css("width", "95%")
+            }
+            else if (resize_flag != 0 && broswer_width > 550) {
+                resize_flag = 0;
+                $(".blood_report").css("width", "550px")
+            }
+        }
+    </script>
+    <div id="fullpage">
+        <div class='quick'>
+            <ul></ul>
+        </div>
+        <div class="fullsection full1" pageNum="1">
+            <div class="fixed_top">
+                <div style="margin: 25px 30px;">
+                    <img class="newsjelly_logo" src="./img_src/newsjelly.png" style="float: left" />
+                    <div class="right_menu" style="display: inline_block; float: right;">
+                        <img class="blood_truth_lie" src="./img_src/그룹 79.png" />
+                        <img class="menu_btn" src="./img_src/그룹 80.png" />
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br /><br /><br />
+            <img class="blood_report" src="./img_src/그룹 77@2x.png" alt="헌혈 보고서" />
+            <br /><br /><br /><br /><br /><br />
+            <img stclass="scroll_mark" src="./img_src/scroll_mark.png" />
+        </div>
+        <div class="fullsection full2" pageNum="2"><span>2 PAGE</span></div>
+        <div class="fullsection full3" pageNum="3"><span>3 PAGE</span></div>
+        <div class="fullsection full4" pageNum="4"><span>4 PAGE</span></div>
+        <div class="fullsection full5" pageNum="5"><span>5 PAGE</span></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            fullset();
+            quickClick();
+        });
+        function fullset() {
+            var pageindex = $("#fullpage > .fullsection").size();
+            for (var i = 1; i <= pageindex; i++) { $("#fullpage > .quick > ul").append("<li></li>"); } $("#fullpage .quick ul :first-child").addClass("on");
+            $(window).bind("mousewheel", function (event) {
+                var page = $(".quick ul li.on");
+                if ($("body").find("#fullpage:animated").length >= 1) return false;
+                if (event.originalEvent.wheelDelta >= 0) {
+                    var before = page.index(); if (page.index() >= 0) page.prev().addClass("on").siblings(".on").removeClass("on");
+                    var pagelength = 0; for (var i = 1; i < (before); i++) { pagelength += $(".full" + i).height(); } if (page.index() > 0) {
+                        page = page.index() - 1; $("#fullpage").animate({ "top": -pagelength + "px" }, 1000, "swing");
+                    } else { alert("첫번째페이지 입니다."); }
+                } else {
+                    var nextPage = parseInt(page.index() + 1);
+                    var lastPageNum = parseInt($(".quick ul li").size());
+                    if (page.index() <= $(".quick ul li").size() - 1) { page.next().addClass("on").siblings(".on").removeClass("on"); } if (nextPage < lastPageNum) {
+                        var pagelength = 0; for (var i = 1; i < (nextPage + 1); i++) {
+                            pagelength += $(".full" + i).height();
+                        } $("#fullpage").animate({ "top": -pagelength + "px" }, 1000, "swing");
+                    } else {
+                        alert("마지막 페이지 입니다!");
+                    };
+                }
+            }); $(window).resize(function () {
+                var resizeindex = $(".quick ul li.on").index() + 1; var pagelength = 0; for (var i = 1; i < resizeindex; i++) {
+                    pagelength += $(".full" + i).height();
+                } $("#fullpage").animate({ "top": -pagelength + "px" }, 0);
+            });
+        }
+        function quickClick() { $(".quick li").click(function () { var gnbindex = $(this).index() + 1; var length = 0; for (var i = 1; i < (gnbindex); i++) { length += $(".full" + i).height(); } if ($("body").find("#fullpage:animated").length >= 1) return false; $(this).addClass("on").siblings("li").removeClass("on"); $("#fullpage").animate({ "top": -length + "px" }, 800, "swing"); return false; }); }
+    </script>
+</body>
+</html>

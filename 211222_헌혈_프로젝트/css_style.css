@@ -1,0 +1,176 @@
+
+        @media(min-width:800px){
+            span{
+                width: 100%;
+            }
+        }
+
+        .fixed_top{
+            position: fixed; 
+            width: 100%;
+            z-index: 10;
+        }
+
+        .newsjelly_logo{
+            width:174px; height:34px;
+            float: left
+        }
+        .right_menu{
+            display: inline_block; float: right;
+        }
+        .right_menu>div{
+            display: inline-block
+        }
+        .right_menu>.blood_truth_lie{
+            border: solid 2px #383838;
+            background-color: #fff;
+        }
+        .blood_truth_lie>.inner{
+            padding: 5px 15px ;
+            display:table-cell;
+            vertical-align: middle;
+            padding-bottom: 4px;
+        }
+        .blood_truth_lie>.inner>span{
+            padding-left: 0px;
+            font-size: 13.5px;
+            text-align: center;
+            vertical-align: text-top;
+        }
+        .div_page{
+            position: relative;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .div_page .title{
+            width: 100%;
+            position:absolute;
+            top:0px;
+            margin-top: 77.6px;
+        }
+        
+        .title h1{
+            margin-top: 0px;
+            font-size: 32px;
+            margin-bottom: 0px;
+        }
+        .title hr{
+            width: 30%;
+            margin-top: 2px;
+        }
+        .title .title_explain{
+            margin-top: 13px;
+        }
+        .title .title_explain p{
+            font-size: 14px;
+            margin:0px;
+            padding:0px;
+            display: block;
+            margin-bottom: 0px;
+        }
+        .title .blood_month_mark{
+            width: 379px;
+            margin-top: 77.5px;
+        }
+        .title .copyright{
+            display: block;
+            margin-top: 54.7px;
+            color:lightgray;
+        }
+        .fill_blood_mark{
+            margin-top: 150px;
+            padding-top: 47px;
+            display: block; 
+            margin-left: auto;
+            margin-right: auto
+        }
+        .title_text{
+            font-size:26px ;
+            margin:0px;
+            margin-top: 9px;
+        }
+        .title_explain{
+            margin: 0px;
+            margin-top:20px;
+        }
+        .title_explain p{
+            font-size: 14px;
+            margin: 0px;
+        }
+        .box2 .highcharts-figure{
+            margin:0px;
+            margin-top: 37px;
+        } 
+        .chart_explain1{
+            margin-top: 65px;
+            width: fit-content;
+            padding: 17px 8%;   
+            background-color: white;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            position: relative;
+            top:0px;
+            border: solid 3px #383838;
+            box-shadow: 3px 3px 3px 3px lightgray;
+        }
+        .chart_explain1 p{
+            color: #4B4B4B;
+            margin-top: 17px;
+            font-size: 14px;
+            margin: 0px;
+        }
+        .box2{
+            text-align: center;
+        }
+        .chart_explain2{
+            margin-top: 65px;
+            width: fit-content;
+            padding: 17px 4%;   
+            background-color: white;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            position: relative;
+            top:0px;
+            border: solid 3px #383838;
+            box-shadow: 3px 3px 3px 3px lightgray;
+        }
+        .chart_explain2 p{
+            color: #4B4B4B;
+            margin-top: 17px;
+            font-size: 14px;
+            margin: 0px;
+        }
+
+       .chart_explain3{
+        width: inherit;
+        padding: 10%;   
+        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        position: relative;
+        top:0px;
+        border: solid 3px ;
+        box-shadow: 3px 3px 3px 3px lightgray;
+    }
+
+    .chart_explain3 p{
+        color: #4B4B4B;
+            margin-top: 17px;
+            font-size: 14px;
+            margin: 0px;
+    }
+
+    .sticky_div .highcharts-figure{
+        position: sticky;
+        top:80px
+    }

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css_style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script>
+        var broswer_width = 0;
+        var resize_flag = 0;
+        window.onresize = function (event) {
+            broswer_width = window.innerWidth
+
+            if (resize_flag != 1 && broswer_width < 550) {
+                resize_flag = 1
+                $(".blood_report").css("width", "95%")
+            }
+            else if (resize_flag != 0 && broswer_width > 550) {
+                resize_flag = 0;
+                $(".blood_report").css("width", "550px")
+            }
+        }
+    </script>
+
+
+
+    <div id="fullpage">
+        <div class="quick">
+            <ul></ul>
+        </div>
+        <div class="fullsection full1" pageNum="1">
+            <div class="fixed_top">
+                <div style="margin: 25px 30px;">
+                    <img class="newsjelly_logo" src="./img_src/newsjelly.png" style="float: left" />
+                    <div class="right_menu" style="display: inline_block; float: right;">
+                        <img class="blood_truth_lie" src="./img_src/그룹 79.png" />
+                        <img class="menu_btn" src="./img_src/그룹 80.png" />
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br /><br /><br />
+            <img class="blood_report" src="./img_src/그룹 77@2x.png" alt="헌혈 보고서" />
+            <br /><br /><br /><br /><br /><br />
+            <img stclass="scroll_mark" src="./img_src/scroll_mark.png" />
+        </div>
+        <div class="fullsection full2" pageNum="2">
+            <h2> 급감하는 헌혈, 여전히 필요한 수혈</h2>
+            <pre>혈액은 대체할 수 있는 물질이 없기 때문에 헌혈에 의해서만 혈액을 수급할 수 있다.
+게다가 혈액은 사고 팔 수 없고 보관기간도 짧아 헌혈자에게 절대적으로 의존할 수 밖에 없다.
+매년 혈액을 필요로 하는 환자를 살리는 꼭 필요한 헌혈, 얼마나 많이 참여할까?</pre>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <h1>
+            헌혈은 봉사가 아니라 기부이다.
+        </h1>
+        <h1>
+            헌혈은 정기적인 관심이 필요하다.
+        </h1>
+    </div>
+    <div style="text-align: center;">
+        <p>
+            코로나 19로 인해 최근(11월 26일) 보건복지부는 헌혈 동참 안내문자를 전송했다고 한다.
+        </p>
+        <p>
+            혈액 수급 상태는 얼마나 심각한가? 과거 헌혈 데이터로 통해 우리에게 헌혈은 어떤 의미일지 짚어보자
+        </p>
+        <br />
+        <h2>
+            급감하는 헌혈, 하지만 여전히 필요한 수혈
+        </h2>
+        <pre>
+혈액은 대체할 수 있는 물질이 없기 때문에 헌혈에 의해서만 혈액을 수급할 수 있다. 
+게다가 혈액은 사고 팔 수 없고 보관기간도 짧아 헌혈자에게 절대적으로 의존할 수 밖에 없다. 
+
+매년 혈액을 필요로 하는 환자를 살리는 꼭 필요한 헌혈, 어떻게 공급량을 맞출까?
+        </pre>
+    </div>
+    <table
+        style="border-collapse: collapse; border-radius: 10px; border-style:hidden; box-shadow:0 0 0 1px #444; margin-left:auto; margin-right: auto; text-align: center;">
+        <tr class="tag">
+            <td class="on" style="border: 1px solid #444444;">
+                <div class="donation_people" style="padding: 10px;">헌혈자 수 (명)</div>
+            </td>
+            <td>
+                <div class="donation_count" style="padding:10px">헌혈건수 (건)</div>
+            </td>
+        </tr>
+    </table>
+    <figure style="float:both;" class="highcharts-figure">
+        <div id="container" style=" margin-left: auto;margin-right: auto;"></div>
+    </figure>
+    <div style="text-align: center;">
+        <pre>
+공급 혈액량이란 혈액원에서 의료기관으로 공급된 혈액이고, 단위는 유닛(unit, 400cc)이다. 
+공급 혈액량은 2016년을 제외하고는 일정 수준을 유지하는 반면 헌혈자 수는 감소하는 추이다.
+특히 2020년 1월, 코로나로 인해 헌혈이 어려운 상황에서 혈액 공급량을 어떻게 유지할 수 있었을까?
+인당 헌혈 횟수가 2번을 넘으면서 기존 헌혈자의 재방문 발길이 높아져서 가능했던 것으로 보인다. 
+
+혈액을 수입하지 않고 자급자족하여 안정적인 공급량을 맞추려면 연간 헌혈실적이 약 300만건이 되어야한다는 통계가 있으나, 
+헌혈건수 그래프를 보면 2014, 2015년을 제외하고는 300만건에 도달하지 못해 매년 혈액 수급에 어려움이 있었다고 볼 수 있다.
+
+<b>! 2005년 말라리아의 성행으로 2007년까지 환자수가 증가하다가 2008년부터 급감하였다. 이에 따라 헌혈자수도 2008년부터 회복한 모습이다. </b>
+        </pre>
+    </div>
+
+    <script src="csv_data.js"></script>
+    <p style="display: none" class="bld">3,4,5,6</p>
+    <!--혈액 수급량과 공급량 추이-->
+    <script src="BLD_S_D_Trend_chart.js"></script>
+    </script>
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <div style="text-align: center;">
+        <h2>
+            혈액은 사실, 적당히 필요하다
+        </h2>
+        <pre>
+
+채혈된 혈액은 검사 후 안전한 혈액이라고 판단되면, 수혈 목적에 맞게 혈액제제가 이뤄진다.
+혈액제제는 혈액을 후가공하는 것으로 적혈구, 혈소판, 혈장, 백혈구 등 혈액 중 필요한 성분만 분리하는 것을 말한다. 
+
+즉, 채혈 후 바로 수혈되는 것이 아니라 많은 검사 절차를 거치기 때문에 혈액을 미리 준비해두어야 한다.
+다만 잊지 말아야 할 사실은 혈액은 살아있는 세포로 장기 보관할 수 없다.
+그렇기 때문에 그때 그때의 헌혈자와 수혈자에 따라 당일의 안정적인 혈액 보유상태가 달라진다.
+
+단순히 헌혈하는 사람이 많다고 해서 좋다고 볼 수 없으며, 부족한 사태는 방지해야 하는 어려움이 있다.
+
+        </pre>
+    </div>
+    <table
+        style="border-collapse: collapse; border-radius: 10px; border-style:hidden; box-shadow:0 0 0 1px #444; margin-left:auto; margin-right: auto; text-align: center;">
+        <tr class="tag_2">
+            <td class="on" style="border: 1px solid #444444;">
+                <div class="daily blood" style="padding: 10px;">일별 혈액 수급량 추이 (유닛)</div>
+            </td>
+            <td>
+                <div class="annual blood" style="padding:10px">연별 평균 혈액수급량 (유닛)</div>
+            </td>
+        </tr>
+    </table>
+    <figure style="float:both" class="highcharts-figure">
+        <div id="daily_blood_supply_crisis" style="height: 500px;margin-left: auto;margin-right: auto;"></div>
+    </figure>
+
+    <figure style="float:both" class="highcharts-figure">
+        <div id="annual_blood_supply_crisis" style="height: 500px;margin-left: auto;margin-right: auto;"></div>
+    </figure>
+    <div style="text-align: center;">
+        <pre>
+2007년부터 올해까지 일별 혈액 보유량에 따른 수급위기 정도를 한 눈에 확인할 수 있게 컬러를 추가해보았다. 
+대한적십자사에 따르면 적정 혈액 보유량인 5일분을 유지하는게 이상적이다.
+5일분 이상을 충족할 때에는 파랑색, 3일분 미만은 주의 단계로 노랑색, 2일분 미만은 경계로 주황색, 1일분 미만은 심각 단계로 빨강색이다. 
+
+2007~2011년까지 라인의 변동이 심한 것을 보아 혈액보유량의 편차가 큰 것을 알 수 있다.
+특히 2010년에는 최소 3.4일분에서 최대 12.4일분까지 올라가는 등 시기에 따른 편차가 커 재고 관리에 어려움이 있었음을 예상할 수 있다.
+
+반면에 최근들어 그 편차가 줄긴하였지만, 혈액 수급에 적신호가 켜진 모습을 확연히 알 수 있다.
+코로나가 시작한 2020년 1월 20일 이후부터 2021년 10월까지 총 651일 중 적정 기준을 충족한 날은 96일밖에 되지 않아 14.75%에 불과했다. 
+그리고 올해, 2021년 일평균 혈액 보유량은 3.88일분으로 역대 최저치를 기록하였다.
+
+즉, 지금 헌혈 역사 이래 가장 어려운 상황을 직면했다고도 볼 수 있다. 
+    </pre>
+    </div>
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <!--적혈구제제 혈액 보유현황 추이와 수급위기 단계-->
+    <script src="BLD_Store_Trend_n_crisis_chart.js"></script>
+    </script>
+    <div style="text-align: center;">
+        <h2>
+            헌혈은 꾸준한 관심이 필요하다
+        </h2>
+        <pre>
+앞서 적정 혈액 보유량을 달성하는게 중요하지만 꾸준히 유지하는 것도 중요하다는 점을 살펴보았다.
+우리는 그럼 언제 헌혈을 하는 것이 좋을까? 특히 헌혈의 손길이 필요한 경우가 언제인지 데이터 패턴을 통해 살펴보자
+        </pre>
+    </div>
+    <div style=" width: 80%; height:600px; margin-left: auto; margin-right: auto;">
+        <figure style="float:both;" class="highcharts-figure">
+            <div id="blood_avg_m" style="width: 50%; height: 500px;margin-left: auto;margin-right: auto; float: left;">
+            </div>
+        </figure>
+        <pre>
+적혈구제제의 혈액 보유현황을 월별로 살펴보면 겨울에 헌혈의 발길이 뜸해지는
+패턴을 볼 수 있다. 
+
+그리고 명절 연휴 직후 혈액 수급이 어려운 상태가 반복된다는 보고가 있을 정도로 
+설날과 추석 명절에 해당하는 2월, 10월에 감소하는 추이를 확인할 수 있다. 
+                </pre>
+    </div>
+    <!--기준별 적혈구제제 혈액 보유현황-->
+    <script src="BLD_Standard_Store_chart.js"></script>
+
+    <figure style="clear:both" class="highcharts-figure">
+        <div id="blood_type_p" style="height: 500px;margin-left: auto;margin-right: auto;">
+        </div>
+    </figure>
+    <div style="text-align: center;">
+        <pre>
+
+혈액형별로 헌혈건수와 수급 위기를 비교해보면, A형이 연 평균 913,935건으로 가장 많이 헌혈하였고, 그다음은 O형이 많았으나
+동시에 가장 혈액을 필요로한 혈액형인 것을 알 수 있다.
+
+혈액형별 수급위기는 O형이 평균 4.1일분으로 가장 적고, 그 다음은 A형 4.5일분으로 적정 기준을 미치지 못하였다.
+반면 AB형과 B형은 각각 평균 5.8일분, 6.9인분으로 헌혈자수가 비교적 적었는데도 안정적으로 수급된 점을 알 수 있다.
+
+이는 수혈에 필요한 혈액형이 많을 수록 더 많이 채혈해야 한다는 뜻이다.
+한국인의 혈액형 빈도는 A형이 34%, O형 28%, B형 27%, AB형 11% 순으로 고르게 분포되어 있는 편이다.
+기본적으로는 같은 혈액형의 혈액만 수혈 받을 수 있으며 맞지 않는 혈액을 수혈받으면 적혈구가 응집되나
+일부 소량에 한하거나 전혈이 아닌 농축적혈구제제의 경우 O형을 수혈하는 경우는 있다.
+
+따라서 동일한 혈액형을 수혈받아야 하는 상황에서, A형 수혈자가 가장 많으므로 A형 헌혈자라면, 더 꾸준한 관심이 필요한 상황이다.
+
+        </pre>
+    </div>
+    <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+    <script src="ABO_BLD_stacked_chart.js"></script>
+
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <div style="text-align: center;">
+        <h2>
+            헌혈자는 감소, 수혈자는 증가 예측
+        </h2>
+        <pre>부족한 혈액은 앞으로도 적정혈액보유 수준을 충족하기 어려울 것으로 보인다.
+그 이유는 우리가 피부로도 느낄 수 있는 저출산, 고령화로 인한 인구 구성 변화 때문이다.</pre>
+    </div>
+    <figure style="float:both" class="highcharts-figure">
+        <div id="people_donation_percentage" style="height: 500px;margin-left: auto;margin-right: auto;">
+        </div>
+    </figure>
+    <!--연령별 헌혈 비중-->
+    <script src="Age_BLD_chart.js"></script>
+
+
+    <div style="text-align: center; ">
+        <pre style="margin :0px 0px;">
+우리나라는 전체 헌혈자 중 10~20대의 비중이 80%를 육박할 정도로 많다. 
+이는 다른 주요 국가와 비교해보면 꽤나 높은 수준으로 편중된 것을 알 수 있다.</pre>
+        <pre style="color:#5C8BF7; margin :0px 0px;">2018년을 기준 한국의 1020 헌혈자 비중은 68.44%인 반면 일본은 20.9%, 프랑스는 26.8%로 다른 연령대에 비해 가장 낮다.
+</pre>
+        <pre style="margin :0px 0px;">문제는 향후 젊은 층의 인구수가 지속적으로 감소될 것으로 예상되는 상황에서 안정적인 혈액 수급이 가능할지에 대한 우려이다.
+        </pre>
+    </div>
+    <div style="height: 2100px" style="position: relative;">
+        <p style="display: none;"> "scroll_Top"
+            <span class="top">0</span>
+        </p>
+        <!--높이 = (scroll 끝 - scroll 시작) + chart 높이-->
+        <figure style=" position: relative; margin-top: 100px; position: sticky; top:100px" class="highcharts-figure">
+            <div id="predict_blood_donation" style="height: 500px; margin-left: auto; margin-right: auto;">
+
+            </div>
+        </figure>
+    </div>
+
+    <!--미래 인구 변화에 따른 헌혈률 예측-->
+    <script src="predict_chart.js">
+
+    </script>
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <div style="width: 900px; margin-left: auto; margin-right: auto;">
+        <pre>여기서 잠깐!</pre>
+        <h2>헌혈하면 건강이 나빠질까?</h2>
+        <pre>
+헌혈은 우리에게 친숙하지만, 과연 우리는 헌혈에 대해 정확한 정보를 알고 있을까?
+
+가장 대표적인 헌혈에 대한 잘못된 인식으로 ‘헌혈하면 건강이 나빠진다’를 꼽을 수 있을텐데요! 정답은 NO입니다.
+우리 몸에 있는 혈액은 대략 남자 체중의 8%, 여자 체중의 7%를 차지합니다. 60kg인 남자는 약 4,800mL, 50kg인 여자는 약 3,500mL 정도입니다. 
+이 중 15%는 비상 대비 여유분이므로,  320mL 또는 400mL 정도의 헌혈은 일상생활이나 건강에 영향을 주지 않는다고 합니다! 
+
+이처럼 헌혈을 둘러싼 진실과 거짓, 그리고 헌혈 상식에 대해 알아볼까요?</pre>
+    </div>
+
+    <div style="margin-top: -100px;">
+        <iframe src="Answer.html" width="100%" height="800px" frameborder=0 framespacing=0 marginheight=0 marginwidth=0
+            scrolling=no vspace=0></iframe>
+    </div>
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+
+    <div style="text-align: center;">
+        <h2>
+            혈액 기부로 함께하는 삶, 정기적 헌혈이 필요하다
+        </h2>
+        <pre>
+헌혈자는 혈액 소중한 생명을 구하는 일이다.
+결론결론결론결론결론결론결론결론결론
+        </pre>
+    </div>
+    </div>
+</body>
+
+</html>

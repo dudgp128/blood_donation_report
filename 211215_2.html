@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" href="css_style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        html,
+        body {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function (e) {
+            //기본 이번트 제가하기
+            window.addEventListener("wheel", function (e) {
+                e.preventDefault();
+            },
+                { passive: false }
+            );
+
+            //페이지 선언
+            var $html = $("html");
+            var page = 1;
+            var lastPage = $(".content").length; //=>5
+            console.log(lastPage)
+            var update_flag = 0;
+            $html.animate({ scrollTop: 0 }, 10); //scrollTop : 현재 높이 위치
+
+                //마우스 휠 굴렸을때 이벤트
+                $(window).on("wheel", function (e) {
+
+                    //if ($html.is(":animated")) return;
+
+                    if (e.originalEvent.deltaY > 0) { 
+                        if(e.originalEvent.deltaY > 0){ //마우스 아래로
+                        if (page == lastPage)
+                            return;
+                        page++;
+                    }
+                    } else if (e.originalEvent.deltaY < 0) {
+                        if (e.originalEvent.deltaY < 0){ //마우스 위로
+                        if (page == 1)
+                            return;
+                        page--;
+                    }
+                    }
+                    var posTop = (page - 1) * $(window).innerHeight();
+                    $html.animate({ scrollTop: posTop });
+
+                    made_chart1()
+                    if (page > 3) {
+                        return;
+                    }
+                    else if (page == 3 && update_flag == 0) {
+                        update_flag = 1
+                        made_chart2()
+                        $("#BLD_Supply_Demand_1").slideUp(500, "swing", function () {
+
+                        });
+                        $("#BLD_Supply_Demand_2").slideDown(1000, "swing", function () {
+
+                        });
+                    }
+                    else if (page == 2 && update_flag == 1) {
+                        update_flag = 0
+                        made_chart1()
+                        $("#BLD_Supply_Demand_2").slideUp(500, "swing", function () { })
+                        $("#BLD_Supply_Demand_1").slideDown(1000, "swing", function () { })
+                    }
+                });
+            });
+    </script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="csv_data.js"></script>
+
+    <div>
+        <div class="content box1" text-align: center;>
+            <div class="fixed_top">
+                <div style="margin: 25px 30px;">
+                    <img class="newsjelly_logo" src="./img_src/newsjelly.png" />
+                    <div class="right_menu">
+                        <div class="blood_truth_lie">
+                            <div class="inner">
+                                <img src="./img_src/em_blood_mark.png" />
+                                <span>헌혈의 오해와 진실</span>
+                            </div>
+                        </div>
+                        <div class="btn_right_menu">
+                            <img src="./img_src/btn_right_menu.png" alt="menu" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br />
+            <div style="display: flex; align-items: center; height: 90%;">
+                <div class="div_page">
+                    <img class="blood_report" src="./img_src/page_shape.svg" alt="헌혈 보고서" />
+                    <div class="title">
+                        <h1> 헌혈 보고서 </h1>
+                        <hr>
+                        <div class="title_explain">
+                            <p>혈액 수급 상태는 얼마나 심각한가?</p>
+                            <p>과거 헌혈 데이터로 통해 우리에게 헌혈은 어떤 의미일지 짚어보자</p>
+                        </div>
+                        <img class="blood_month_mark" src="./img_src/blood_month_mark.svg" alt="월별 혈액 수급량 마크" />
+                        <span class="copyright">NJ INTERACTIVE PROJECT</span>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <img style="display: flex; margin-left: auto; margin-right: auto;"
+                        src="./img_src/scroll_mark.png" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="content box2" style="background-color: white;">
+                <div style="display: flex; align-items: center; height: inherit;">
+                <img class="fill_blood_mark" src="./img_src/패스 79.png" />
+                <h1 class="title_text">급감하는 헌혈, 여전히 필요한 수혈</h1>
+                <div class="title_explain">
+                    <p>혈액은 대체할 수 있는 물질이 없기 때문에 헌혈에 의해서만 혈액을 수급할 수 있다.</p>
+                    <p>게다가 혈액은 사고 팔 수 없고 보관기간도 짧아 헌혈자에게 절대적으로 의존할 수 밖에 없다.</p>
+                    <p>매년 혈액을 필요로 하는 환자를 살리는 꼭 필요한 헌혈, 얼마나 많이 참여할까?</p>
+                    </p>
+                </div>
+                <figure style="float:both;" class="highcharts-figure">
+                    <div id="BLD_Supply_Demand_1" style="width: 900px; height: 300px; margin-left: auto; margin-right: auto;">
+                    </div>
+                    <div id="BLD_Supply_Demand_2" style="display:none; width: 900px; height:300px; margin-left: auto; margin-right: auto;"></div>
+                </figure>
+                <script src="BLD_S_D_Trend_chart_1.js"></script>
+                <script src="BLD_S_D_Trend_chart_2.js"></script>
+
+                <div class="chart2_explain">
+                    <p>채혈된 혈액은 검사 후 의료기관으로 공급되며 혈액의 단위는 유닛(unit, 400cc)으로 1팩에 해당하는 양이다.</p>
+                    <p>2005년~2008년 말라리아 성행으로 헌혈이 불가한 기간을 제외하고는</p>
+                    <p>혈액 공급량은 일정 수준에서 증가하는 모습인 반면, 헌혈자수는 감소하는 추이다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+            <div class="content box3">
+            </div>
+        </div>
+        <div class="content box4">
+            <img class="fill_blood_mark" src="./img_src/패스 79.png" />
+            <h1 class="title_text">사실, 더 심각한 헌혈 수급 상태</h1>
+            <div class="title_explain">
+                <p>채혈된 혈액은 검사 후 안전한 혈액이라고 판단되면, 수혈 목적에 맞게 혈액제제가 이뤄진다.</p>
+                <p>혈액제제는 혈액을 후가공하는 것으로 적혈구, 혈소판, 혈장, 백혈구 등 혈액 중 필요한 성분만 분리하는 것을 말한다. </p>
+                <br />
+                <p>즉, 채혈 후 바로 수혈되는 것이 아니라 많은 검사 절차를 거치기 때문에 혈액을 미리 준비해두어야 한다.</p>
+                <p>다만 잊지 말아야 할 사실은 혈액은 살아있는 세포로 장기 보관할 수 없다.</p>
+                <p><b>단순히 헌혈하는 사람이 많을수록 좋다고 볼 수 없으며, 부족한 사태는 사전에 방지해야하는 어려움이 있다.
+                    </b></p>
+            </div>
+            <figure style="float:both" class="highcharts-figure">
+                <div id="daily_blood_supply_crisis" style="height: 250px;margin-left: auto;margin-right: auto;">
+                </div>
+            </figure>
+            <script src="BLD_Store_Trend_n_crisis_chart.js"></script>
+            <div class="chart2_explain">
+                <p>채혈된 혈액은 검사 후 의료기관으로 공급되며 혈액의 단위는 유닛(unit, 400cc)으로 1팩에 해당하는 양이다.</p>
+                <p>2005년~2008년 말라리아 성행으로 헌혈이 불가한 기간을 제외하고는</p>
+                <p>혈액 공급량은 일정 수준에서 증가하는 모습인 반면, 헌혈자수는 감소하는 추이다.
+                </p>
+            </div>
+        </div>
+        <div class="content box5">
+
+        </div>
+        <div class="content box6"></div>
+        <div class="content box7"></div>
+        <div class="content box8"></div>
+        <div class="content box9"></div>
+        <div class="content box10"></div>
+
+</body>
+
+</html>
