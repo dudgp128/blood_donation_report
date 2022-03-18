@@ -1,38 +1,39 @@
-var $ = window.jQuery;
 $(document).ready(function (e) {
-    var _10s = [];
-    var _20s = [];
-    var _30s = [];
-    var _40s = [];
-    var _50s = [];
-    var _60s = [];
-    var year_data = [];
+
+    let year_data = new Set();
+    let age_category = new Set();
 
     dataset_3.forEach(function (element, index) {
-        switch (index % 6) {
-            case 0:
-                _10s.push(parseInt(element[2]));
-                year_data.push(parseInt(element[0]));
-                break;
-            case 1:
-                _20s.push(parseInt(element[2]));
-                break;
-            case 2:
-                _30s.push(parseInt(element[2]));
-                break;
-            case 3:
-                _40s.push(parseInt(element[2]));
-                break;
-            case 4:
-                _50s.push(parseInt(element[2]));
-                break;
-            case 5:
-                _60s.push(parseInt(element[2]));
-                break;
+        year_data.add(element[0])
+        age_category.add(element[1])
+    });
+    year_data = Array.from(year_data);
+
+
+    var x = new Array(age_category.size);
+    for (var i = 0; i < x.length; i++) {
+        x[i] = new Array(year_data.size);
+    }
+    dataset_3.forEach((e, i) => {
+        x[parseInt(i % 6)][parseInt(i / 6)] = parseInt(e[2])
+    })
+
+
+    x = x.reverse()
+    color_list = color_list.reverse()
+    age_category = Array.from(age_category).reverse()
+
+
+    let color_list = ['#f8e3a2', '#dbdc9d', '#b4d199', '#94c496', '#84B491', '#70A685']
+    const series_data = age_category.map((e, i) => {
+        return {
+            name: age_category[i],
+            data: x[i],
+            color: color_list[i]
         }
     });
-
     //실적(건)에 대한 총계 - 연령비율 (태블로 - 3-2)
+
     var chart = Highcharts.chart('people_donation_percentage', {
         chart: {
             type: 'area'
@@ -42,13 +43,13 @@ $(document).ready(function (e) {
         },
         title: {
             text: "[ 연령별 헌혈자 비중]",
-            style:{
-                fontSize:"13px"
-            }            
+            style: {
+                fontSize: "13px"
+            }
         },
-        credits:{
+        credits: {
             href: 'https://www.bloodinfo.net/main.do',
-            text:'* 데이터 출처:  대한적십자사 「혈액정보통계」'
+            text: '* 데이터 출처:  대한적십자사 「혈액정보통계」'
         },
         xAxis: {
             categories: year_data
@@ -74,30 +75,7 @@ $(document).ready(function (e) {
                 }
             },
         },
-        series: [{
-            name: '60세이상',
-            data: _60s,
-            color: '#70A685'
-        }, {
-            name: '50~59세',
-            data: _50s,
-            color: '#84B491'
-        }, {
-            name: '40~49세',
-            data: _40s,
-            color: '#94c496'
-        }, {
-            name: '30~39세',
-            data: _30s,
-            color: '#b4d199'
-        }, {
-            name: '20~29세',
-            data: _20s,
-            color: '#dbdc9d'
-        }, {
-            name: '16~19세',
-            data: _10s,
-            color: '#f8e3a2'
-        }],
+        series: series_data
     });
+    console.log(chart.series)
 });
