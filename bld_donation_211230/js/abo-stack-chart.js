@@ -5,14 +5,13 @@ $(document).ready(function (e) {
         blood_ABO.push({
             name: element[0],
             data: [{
-                y: parseInt(element[1]),
+                y: parseInt(element[1], 10),
                 bld_days: element[2],
                 color: blood_days_color[index]
             }]
         });
     });
     blood_ABO.reverse();
-    console.log('blood_ABO', blood_ABO);
 
     let chart = Highcharts.chart('blood_type_p', {
         exporting: {
@@ -62,8 +61,6 @@ $(document).ready(function (e) {
                 return '<span style="color:' + this.point.color + '">\u25CF</span> 혈액형 : <b>' + this.series.name + '</b><br/>' + '연 평균 헌혈건수 (건) : <b>' + Highcharts.numberFormat(this.point.y, 0) + '</b><br/>' + '일 평균 보유일수 (일분) : <b> ' + this.point.bld_days + '</b>'
             }
         }
-
-
 
     });
 
