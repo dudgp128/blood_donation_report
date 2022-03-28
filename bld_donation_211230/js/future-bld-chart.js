@@ -1,11 +1,10 @@
-var $ = window.jQuery;
 $(document).ready(function (e) {
-    var real_data_people = [];
-    var real_data_count = [];
-    var real_future_data_people = [];
-    var real_future_data_count = [];
-    var year_data = [];
-    var real_future_year = [];
+    let real_data_people = [];
+    let real_data_count = [];
+    let real_future_data_people = [];
+    let real_future_data_count = [];
+    let year_data = [];
+    let real_future_year = [];
 
     dataset_4.forEach(function (element, index) {
         if (element[1] == '실제') {
@@ -17,16 +16,16 @@ $(document).ready(function (e) {
         real_future_data_count.push(parseInt(element[3]) / 1000);
         real_future_year.push(parseInt(element[0]));
     });
-    
-    var chart = Highcharts.chart('future_blood_donation', {
+    //real_future_year, real_future_data_count,real_future_data_people
+    let chart = Highcharts.chart('future_blood_donation', {
         exporting: {
             enabled: false
         },
         title: {
             text: '[ 추계 인구 변화에 따른 헌혈건수 예측 ] ',
-            style:{
-                fontSize:"13px"
-            }   
+            style: {
+                fontSize: "13px"
+            }
         },
         credits: {
             href: 'https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1BPA002&conn_path=I2',

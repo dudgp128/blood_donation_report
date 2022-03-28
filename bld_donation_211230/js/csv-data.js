@@ -22,16 +22,9 @@ const dataset_8 = column_array_split(data_field23_2);
 
 
 function column_array_split(data) {
-    return data.split('/n').filter((e, i) => {
-        return i != 0
-    }).map((e) => {
-        return e.split(',')
-    })
-
+    return data.split('/n').filter((element, index) => index != 0).map((element) => element.split(','))
 }
 
 function array_split(data) {
-    return data.split(',').map((e) => {
-        return parseInt(e)
-    })
+    return data.split(',').map((element) => parseInt(element, 10))
 }

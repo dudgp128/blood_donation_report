@@ -1,29 +1,20 @@
 $(document).ready(function (e) {
-    var blood_supply = [];
-    var total_blood_donation_people = [];
-    var year_data = [];
-
-    dataset_2.forEach(function (element, index) {
-        if (element[1] == '공급 혈액량 (유닛)') {
-            blood_supply.push(parseInt(element[2]));
+    const blood_supply = dataset_2.filter((element) => element[1] == '공급 혈액량 (유닛)').map((element) => parseInt(element[2], 10))
+    const total_blood_donation_people = dataset_1.map((element) => {
+        return {
+            y: parseInt(element[3], 10),
+            supply_days: parseFloat(element[2], 10)
         }
-    });
+    })
+    const year_data = dataset_1.map((element) => parseInt(element[0], 10));
 
-    dataset_1.forEach(function (element, index) {
-        year_data.push(parseInt(element[0]));
-        total_blood_donation_people.push({
-            y: parseInt(element[3]),
-            supply_days: parseFloat(element[2]),
-        })
-    });
 
-    console.log(total_blood_donation_people)
-    var zones = []
-    var colors = ['#F0F1F1', '#DEEAE8', '#F1F1F1', '#DBE9E7', '#C5E0DD', '#C5E0DD', '#C1DFDB', '#B9DCD7', '#A4D3CE', '#8FCAC3', '#82C4BC', '#90C9C3', '#75BEB6', '#69B7AF', '#67B6AD', '#54ADA3'];
+    const zones = []
+    const colors = ['#F0F1F1', '#DEEAE8', '#F1F1F1', '#DBE9E7', '#C5E0DD', '#C5E0DD', '#C1DFDB', '#B9DCD7', '#A4D3CE', '#8FCAC3', '#82C4BC', '#90C9C3', '#75BEB6', '#69B7AF', '#67B6AD', '#54ADA3'];
     for (let i = 0; i < colors.length - 1; i++) {
-        var c1 = colors[i]
+        const c1 = colors[i]
         if (i < colors.length - 2) {
-            var c2 = colors[i + 1]
+            const c2 = colors[i + 1]
             zones.push({
                 value: i + 1,
                 color: {

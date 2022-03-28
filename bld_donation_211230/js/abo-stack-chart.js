@@ -1,15 +1,14 @@
 $(document).ready(function (e) {
-    let blood_days_color = ['#EB7022', '#9e3d22', '#2b5c8a', '#316596']
-    const blood_ABO = [];
-    dataset_7.forEach((element, index) => {
-        blood_ABO.push({
+    const blood_days_color = ['#EB7022', '#9e3d22', '#2b5c8a', '#316596']
+    const blood_ABO = dataset_7.map((element, index) => {
+        return {
             name: element[0],
             data: [{
                 y: parseInt(element[1], 10),
                 bld_days: element[2],
                 color: blood_days_color[index]
             }]
-        });
+        }
     });
     blood_ABO.reverse();
 

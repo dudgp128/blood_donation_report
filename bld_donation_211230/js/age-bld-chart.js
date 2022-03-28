@@ -13,18 +13,18 @@ $(document).ready(function (e) {
         x[i] = new Array(year_data.length);
     }
 
-    dataset_3.forEach((e, i) => {
-        x[parseInt(i % 6, 10)][parseInt(i / 6, 10)] = parseInt(e[2], 10)
+    dataset_3.forEach((element, index) => {
+        x[parseInt(index % 6, 10)][parseInt(index / 6, 10)] = parseInt(element[2], 10)
     })
     x = x.reverse()
 
     let color_list = ['#70A685', '#84B491', '#94c496', '#b4d199', '#dbdc9d', '#f8e3a2']
 
-    const series_data = age_category.map((e, i) => {
+    const series_data = age_category.map((element, index) => {
         return {
-            name: age_category[i],
-            data: x[i],
-            color: color_list[i]
+            name: age_category[index],
+            data: x[index],
+            color: color_list[index]
         }
     });
 
